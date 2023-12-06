@@ -1,0 +1,24 @@
+{
+  "short_name": "Kameroon",
+  "name": "Kameroon",
+  "description": "simple QR code scanner",
+  "lang": "en-GB",
+  "icons": [
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "id": "/",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait"
+}
