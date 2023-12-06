@@ -45,3 +45,46 @@ code {
   -moz-box-shadow: none !important;
   box-shadow: none !important;
 }
+
+/* Add this CSS to your existing styles or create a new styles file */
+#tabs {
+  display: flex;
+  background-color: #333;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid #555;
+  border-radius: 5px 5px 0 0;
+}
+
+.tab:hover {
+  background-color: #555;
+}
+
+.tab.active {
+  background-color: #555;
+}
+
+.tab-content {
+  display: none;
+  padding: 20px;
+  border: 1px solid #555;
+  border-radius: 0 0 5px 5px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+#generatorIframe {
+  display: none;
+}
+
+.tab-content.active #generatorIframe {
+  display: block;
+}

@@ -1,12 +1,15 @@
-import React, {Fragment, useState} from "react";
+//App.js
+import React, { Fragment, useState } from "react";
 import { Scan } from "./scan";
-import {Root, Footer, GlobalStyle, Result} from "./css/styles";
-import {initializeAudio} from "./helper";
-import {Button} from "./scan/styles";
-import {useHistory} from 'react-router-dom';
-import {useSelector} from "react-redux";
-import {useQueryState} from "./hooks/useQueryState";
-import {encryptMessage, encodeEncryptedMessageAsBase64} from "@maslick/kameroon";
+import { Root, Footer, GlobalStyle, Result } from "./css/styles";
+import { initializeAudio } from "./helper";
+import { Button } from "./scan/styles";
+import { useHistory, Link } from 'react-router-dom';  // Import Link from 'react-router-dom'
+import { useSelector } from "react-redux";
+import { useQueryState } from "./hooks/useQueryState";
+import { encryptMessage, encodeEncryptedMessageAsBase64 } from "@maslick/kameroon";
+// Import BrowserRouter and Route from react-router-dom
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 export default function App() {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
@@ -24,7 +27,7 @@ export default function App() {
       const encryptedMessage = await encryptMessage(decodeURIComponent(publicKey), code.rawcode);
       const encryptedMessageBase64 = encodeEncryptedMessageAsBase64(encryptedMessage);
       const base64urlEncodedMessage = encodeURIComponent(encryptedMessageBase64);
-      setTimeout(()=> {
+      setTimeout(() => {
         window.location.replace(`${redirect_url}?code=${base64urlEncodedMessage}`);
       }, 300);
     } else
@@ -32,7 +35,7 @@ export default function App() {
   };
 
   const onClear = () => setIsCameraOpen(false);
-  const {push} = useHistory();
+  const { push } = useHistory();
 
   const handleStartScanBtn = () => {
     initializeAudio();
@@ -45,12 +48,26 @@ export default function App() {
     setResult(undefined);
   };
 
+  const handleGenerateQRBtn = () => {
+    console.log('Navigating to /generator_index.html');
+    // Use push to navigate to the "/generator_index.html" route
+    push("/generator_index.html");
+    
+     // Reload the page after navigating
+    window.location.reload();
+  };
+
   const renderHelp = () => {
     if (!isCameraOpen && !result)
       return (
-        <div style={{paddingTop: 180}}>
-          <h3>Welcome to <a href="https://kameroon.web.app">Kameroon</a>!</h3>
-          <p>Click SCAN to start the QR code scanner :)</p>
+        <div style={{ paddingTop: 10 }}>
+          <h3>Welcome to...</h3>
+          <img src="./bltaqr_logo.png" alt="BLTA Logo" style={{ width: '200px', marginBottom: '20px', marginTop: '20PX' }} />
+          
+          <h3><a href="https://bltasolutions.co.ke">BLTA QR CODES SCANNER DAPP</a>!</h3>
+          <br></br>
+          <br></br>
+          <p>Goood News!! Your QR Codes are now end-to-end encrypted</p>         
         </div>
       );
   };
@@ -63,7 +80,7 @@ export default function App() {
         beepOn={beep}
         bw={bw}
         scanRate={200}
-        crosshair={{enabled: crossHair, style: crossHairStyle}}
+        crosshair={{ enabled: crossHair, style: crossHairStyle }}
       />
     );
   };
@@ -80,31 +97,41 @@ export default function App() {
 
   const renderSettingsButton = () => {
     if (!isCameraOpen || result) return (
-        <Button style={{backgroundColor: "green"}} onClick={async () => push("/config")}>CONFIG</Button>
+      <Button style={{ backgroundColor: "green" }} onClick={async () => push("/config")}>Settings</Button>
     );
   };
 
   return (
-    <Fragment>
-      <Root>
-        <div style={{minHeight: 430, margin: 20}}>
-          {renderHelp()}
-          {renderResult()}
-          {renderCamera()}
-        </div>
+    <div class = "container">
+        <Router>
+      
+          <Fragment>
+            <Root>
+              <div style={{ minHeight: 430, margin: 20 }}>
+                {renderHelp()}
+                {renderResult()}
+                {renderCamera()}
+              </div>
 
-        <Footer>
-          <div>
-            {!isCameraOpen ?
-              <Button onClick={handleStartScanBtn}>SCAN</Button> :
-              <Button onClick={handleStopScanBtn} style={{backgroundColor: "red"}}>STOP</Button>
-            }
-          </div>
-          <div style={{flexBasis: "100%", height: 0}}></div>
-          {renderSettingsButton()}
-        </Footer>
-      </Root>
-      <GlobalStyle/>
-    </Fragment>
+              <Footer>
+                <div>
+                  {!isCameraOpen ?
+                    <>
+                      <Button onClick={handleStartScanBtn}>Scan Qr Code</Button>
+                      <Button style={{ backgroundColor: "blue" }} onClick={handleGenerateQRBtn}>Generate Qr Code</Button>
+                    </> :
+                    <Button onClick={handleStopScanBtn} style={{ backgroundColor: "red", width: '100%' }}>Cancel</Button>
+                  }
+                </div>
+                <div style={{ flexBasis: "100%", height: 0 }}></div>
+                {renderSettingsButton()}
+              </Footer>
+            </Root>
+            <GlobalStyle />
+          </Fragment>
+          <Route path="/generator_index.html" render={() => <iframe src="/public/generator_index.html" style={{ width: '100%', height: 'calc(100vh - 40px)', border: 'none' }} />} />
+        </Router>
+      </div>
+    
   );
 }
