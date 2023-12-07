@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/blta-qr-scanner-generator/static/css/main.70d737fd.css",
-    "main.js": "/blta-qr-scanner-generator/static/js/main.0c943631.js",
+    "main.js": "/blta-qr-scanner-generator/static/js/main.699afd51.js",
     "static/js/787.ca072bfe.chunk.js": "/blta-qr-scanner-generator/static/js/787.ca072bfe.chunk.js",
     "index.html": "/blta-qr-scanner-generator/index.html",
     "main.70d737fd.css.map": "/blta-qr-scanner-generator/static/css/main.70d737fd.css.map",
-    "main.0c943631.js.map": "/blta-qr-scanner-generator/static/js/main.0c943631.js.map",
+    "main.699afd51.js.map": "/blta-qr-scanner-generator/static/js/main.699afd51.js.map",
     "787.ca072bfe.chunk.js.map": "/blta-qr-scanner-generator/static/js/787.ca072bfe.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.70d737fd.css",
-    "static/js/main.0c943631.js"
+    "static/js/main.699afd51.js"
   ]
 }
