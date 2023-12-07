@@ -3,18 +3,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './css/index.css';
 import App from './App.js';
-// import MainMenu from './mainmenu.html';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './sw/serviceWorker';
 import {store as storeToolkit} from './reducers/storeToolkit';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-// import { BrowserRouter } from 'react-router-dom';
+import {HashRouter  as Router, Route, Switch} from "react-router-dom";
 import Config from "./config";
 import {Provider} from "react-redux";
 
 const RootEl = () => (
   <Provider store={storeToolkit}>
-    <Router>
+    <Router basename="/">
       <Switch>
         <Route path="/config">
           <Config/>

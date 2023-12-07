@@ -8,7 +8,7 @@ import { useHistory, Link } from 'react-router-dom';  // Import Link from 'react
 import { useSelector } from "react-redux";
 import { useQueryState } from "./hooks/useQueryState";
 import { encryptMessage, encodeEncryptedMessageAsBase64 } from "@maslick/kameroon";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter  as Router, Route } from "react-router-dom";
 
 export default function App() {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
@@ -102,7 +102,7 @@ export default function App() {
 
   return (
     <div class = "container">
-        <Router>
+        <Router basename="/">
       
           <Fragment>
             <Root>
@@ -128,7 +128,7 @@ export default function App() {
             </Root>
             <GlobalStyle />
           </Fragment>
-          <Route path="/generator_index.html" render={() => <iframe src="/public/generator_index.html" style={{ width: '100%', height: 'calc(100vh - 40px)', border: 'none' }} />} />
+          <Route basename="/" path="/generator_index.html" render={() => <iframe src="/public/generator_index.html" style={{ width: '100%', height: 'calc(100vh - 40px)', border: 'none' }} />} />
         </Router>
       </div>
     
