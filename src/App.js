@@ -8,7 +8,6 @@ import { useHistory, Link } from 'react-router-dom';  // Import Link from 'react
 import { useSelector } from "react-redux";
 import { useQueryState } from "./hooks/useQueryState";
 import { encryptMessage, encodeEncryptedMessageAsBase64 } from "@maslick/kameroon";
-// Import BrowserRouter and Route from react-router-dom
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 export default function App() {

@@ -2,7 +2,7 @@
   "name": "kameroon",
   "version": "1.0.2",
   "private": false,
-  "homepage": "https://omondisteven.github.io/blta-qr-scanner-generator.git",
+  "homepage": "https://omondisteven.github.io/blta-qr-scanner-generator",
   "dependencies": {
     "@maslick/kameroon": "^1.0.2",
     "@reduxjs/toolkit": "^1.9.5",
